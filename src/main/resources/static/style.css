@@ -1,0 +1,191 @@
+.bodyMenu {
+	text-align: center;
+	background-color: green;
+	overflow: auto;
+}
+
+.bodyLingua{
+	background-color: beige; 
+	background-attachment: fixed; /* Fissa il background */
+    background-size: cover; /* Adatta il gradiente al dimensionamento del body */
+}
+	
+
+.headerMenu {
+	text-align: center;
+	color: white;
+	font-size: 35px;
+	font-family: Lucida Console, Courier New, monospace;
+}
+
+.imgMenu {
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	box-shadow: 5px 5px 5px rgb(221, 220, 220),
+		-5px -5px 5px rgb(221, 220, 220),
+		5px -5px 5px rgb(221, 220, 220),
+		-5px 5px 5px rgb(221, 220, 220);
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
+	gap: 0px;
+	align-items: center;
+}
+
+.grid-item {
+	text-align: center;
+	padding: 10px;
+}
+
+.grid-container-lingua {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	gap: 50px;
+	align-items: center;
+}
+
+.grid-item-lingua {
+	display: flex;
+    justify-content: center;
+    	padding: 10px;
+}
+
+.titoloMenu {
+	font-size: 35px;
+	color: white;
+	border-bottom: 0%;
+	margin-bottom: 0%;
+}
+
+.span1Menu {
+	font-size: 50px;
+	color: white;
+}
+
+.titoloLingua {
+	font-size: 35px;
+	color: black;
+	display: inline;
+	margin: 0;
+}
+
+.span1Lingua {
+	font-size: 50px;
+	color: green;
+}
+
+.liberi {
+	margin: 0%;
+	border: 0%;
+	margin-left: 13%;
+}
+
+.lineaLingua {
+	width: 85%;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-color: green;
+	background-color: green;
+}
+
+.sottotitolo {
+	color: black;
+	font-weight: bold;
+	text-align: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+	justify-content: center;
+}
+
+footer{
+	color: green;
+	font-weight: bold;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.containerMenu {
+    display: flex;
+    justify-content: space-between; /* Spazio tra le colonne */
+    align-items: center; /* Allineamento verticale al centro */
+}
+
+
+.linea {
+  border: none; /* Rimuove il bordo predefinito */
+    border-left: 2px solid green; /* Larghezza e colore della linea */
+    height: 100px; /* Altezza della linea */
+}
+
+.h2Menu{
+	font-family: "Lucida Handwriting", cursive;
+	text-align: center;
+}
+
+.nomePiatto{
+	font-family: Consolas;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.ingredienti{
+	font-family: Georgia;
+	font-size: 13px;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+	.grid-container {
+		grid-template-columns: 33% 33% 33%;
+	}
+
+	.grid-item {
+		padding: 0px;
+	}
+
+	.imgMenu {
+		width: 100px;
+		height: 100px;
+		margin-bottom: 30px;
+		margin-top: 30px;
+	}
+	
+	.grid-container-lingua{
+		grid-template-columns: 100%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.grid-container {
+		grid-template-columns: 33% 33% 33%;
+
+	}
+
+	.grid-item {
+		padding: 0px;
+	}
+
+	.imgMenu {
+		width: 70px;
+		height: 70px;
+		margin-bottom: 10px;
+		margin-top: 10px;
+	}
+	
+	.grid-container-lingua{
+		grid-template-columns: 100%;
+	}
+	
+}

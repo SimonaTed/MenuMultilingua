@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Menù</title>
+	<link rel="stylesheet" th:href="@{../style.css}" />
+	<link rel="stylesheet" th:href="@{../bootstrap/css/bootstrap.min.css}">
+
+
+
+</head>
+
+<body style="text-align:center;" class="bodyLingua">
+
+	<header>
+		<div th:object="${lingua}" style="margin-top: 50px;">
+			<div class="header-content">
+				<h1 class="titoloLingua" th:text="*{benvenuto}"></h1>
+				<img class="logo" th:src="@{../images/logo-fretto.png}" th:alt="FREEtto" height="10%" width="15%"
+					style="margin-left: 10px;">
+			</div>
+			<hr class="lineaLingua" />
+			<p class="sottotitolo"><span th:text="*{sottotitolo}"></span></p>
+		</div>
+	</header>
+
+	<div class="container">
+		<div class="grid-container-lingua">
+			<div class="grid-item-lingua" th:each="struttura : ${strutture}">
+				<div>
+					<table>
+						<h2 class="h2Menu" th:text="${struttura.sottoSezione}"></h2>
+						<h5 class="h2Menu" th:text="${struttura.sezione}"></h5>
+						<tbody style="text-align:center;">
+							<tr th:each="piatto: ${struttura.descrizioni}" style="text-align:center;">
+								<td>
+									<a th:if="${piatto.menuEntity.url != ''}" th:href="@{'#modalPiatti'}"
+										th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}"
+										th:text="${piatto.nome}" class="nomePiatto"></a>
+									<span th:if="${piatto.menuEntity.url == ''}" th:text="${piatto.nome}"
+										class="nomePiatto"></span>
+									<br />
+									<div th:if="${piatto.ingrediente != ''}">
+										<span class="ingredienti" th:text="${piatto.ingrediente}"></span>
+									</div>
+									<a th:text="${piatto.menuEntity.prezzo}" class="prezzo"></a>
+									<a th:text="${piatto.menuEntity.prezzoDue}" class="prezzo"></a>
+
+									<br />
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div>
+		<div class="modal fade" id="modalPiatti" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered" role="document"
+				th:each="descrizione : ${descrizioni}">
+				<div class="modal-content">
+					<div class="modal-body">
+						<img id="modalImage" style="width: 100%;" />
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+
+
+		$(document).ready(function () {
+			$(document).on('click', '[data-toggle="modal"]', function (e) {
+				e.preventDefault();
+				var targetModal = $(this).attr('data-target');
+				var modal = new bootstrap.Modal(document.querySelector(targetModal));
+				var imageSrc = $(this).data('image');
+				$('#modalImage').attr('src', imageSrc);
+				modal.show();
+			});
+		});
+
+	</script>
+
+
+
+
+	<footer>
+		<div th:object="${lingua}">
+			<p><span th:text="*{avvertenze}"></p>
+			<p><span th:text="*{allergeni}"></p>
+		</div>
+	</footer>
+
+</body>
+
+</html>

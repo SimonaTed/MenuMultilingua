@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Menù</title>
+	<link rel="stylesheet" th:href="@{../style.css}" />
+</head>
+
+<body class="bodyMenu">
+	<div class="container">
+		<div class="divIcone">
+			<br>
+			<br>
+			<div class="grid-container">
+
+				<div class="grid-item" th:each="lingua : ${lingue}">
+					<a th:href="@{'/menu-freetto/' + ${lingua.sigla}}">
+						<img class="imgMenu" th:src="@{${lingua.urlBandiera}}" th:alt="${lingua.sigla}" width="50px"
+							height="35px"></a>
+				</div>
+			</div>
+		</div>
+</body>
+
+</html>
