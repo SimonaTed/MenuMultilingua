@@ -6,8 +6,8 @@
 
 .bodyLingua{
 	background-color: beige; 
-	background-attachment: fixed; /* Fissa il background */
-    background-size: cover; /* Adatta il gradiente al dimensionamento del body */
+	background-attachment: fixed; 
+    background-size: cover; 
 }
 	
 
@@ -51,9 +51,16 @@
 }
 
 .grid-item-lingua {
-	display: flex;
+    display: flex;
     justify-content: center;
-    	padding: 10px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
 }
 
 .titoloMenu {
@@ -116,15 +123,15 @@ footer{
 
 .containerMenu {
     display: flex;
-    justify-content: space-between; /* Spazio tra le colonne */
-    align-items: center; /* Allineamento verticale al centro */
+    justify-content: space-between; 
+    align-items: center; 
 }
 
 
 .linea {
-  border: none; /* Rimuove il bordo predefinito */
-    border-left: 2px solid green; /* Larghezza e colore della linea */
-    height: 100px; /* Altezza della linea */
+  border: none;
+    border-left: 2px solid green; 
+    height: 100px;
 }
 
 .h2Menu{
@@ -143,6 +150,14 @@ footer{
 	font-size: 13px;
 }
 
+.dimensione{
+	font-style: oblique;
+	margin-left: 3%;
+}
+
+.prezzo{
+	margin-right: 3%;
+}
 
 
 
