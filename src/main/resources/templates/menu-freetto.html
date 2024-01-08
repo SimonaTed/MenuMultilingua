@@ -45,23 +45,18 @@
 									<div th:if="${piatto.ingrediente != ''}">
 										<span class="ingredienti" th:text="${piatto.ingrediente}"></span>
 									</div>
+									<a th:if="${piatto.dimensione != ''}" th:text="${piatto.dimensione}" class="dimensione"></a>
 									<a th:text="${piatto.menuEntity.prezzo}" class="prezzo"></a>
+									<span th:if="${piatto.dimensione != '' &amp;&amp; piatto.menuEntity.prezzo != ''}"> | </span>
+									<a th:if="${piatto.dimensioneDue != ''}" th:text="${piatto.dimensioneDue}" class="dimensione"></a>
 									<a th:text="${piatto.menuEntity.prezzoDue}" class="prezzo"></a>
-
 									<br />
 								</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
 							</tr>
-
 						</tbody>
 					</table>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 
