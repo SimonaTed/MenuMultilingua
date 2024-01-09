@@ -28,11 +28,37 @@
 
 	<div class="container">
 		<div class="grid-container-lingua">
-			<div class="grid-item-lingua" th:each="struttura : ${strutture}">
+			<div class="grid-item-lingua" th:each="struttura, i : ${strutture}">
 				<div>
 					<table>
-						<h2 class="h2Menu" th:text="${struttura.sottoSezione}"></h2>
-						<h5 class="h2Menu" th:text="${struttura.sezione}"></h5>
+						
+					
+						
+						<a th:if="${struttura.sezione == '' && struttura.aggregante != 15}">
+							<h3 class="h2Menu" th:text="${struttura.sottoSezione}">
+						</a>
+						
+						<a th:if="${struttura.sezione == '' && struttura.aggregante == 15}">
+							<h3 class="h2Menu" th:text="${struttura.sottoSezione}" style="display: inline;"></h3>
+							<img th:src="@{../images/piatti/gluten-free.png}" th:alt="GlutenFree" height="15%"
+								width="11%" style="margin-left: 3%;">
+						</a>
+						
+						<a th:if="${struttura.aggregante == 19 && struttura.sezione != strutture[i.index - 1].sezione}">
+							<h3 class="h2Menu" th:text="${struttura.sezione}"></h3>
+							<h5 class="h2Menu" th:text="${struttura.sottoSezione}"></h5>
+						</a>
+						
+						<a th:if="${struttura.sezione != '' && struttura.sezione != strutture[i.index - 1].sezione && struttura.aggregante != 19}">
+							<h3 class="h2Menu" th:text="${struttura.sezione}"></h3>
+							<h5 class="h2Menu" th:text="${struttura.sottoSezione}" style="text-decoration: underline;"></h5>
+						</a>
+						
+						<a th:if="${struttura.sezione != '' && struttura.sezione == strutture[i.index - 1].sezione}">
+							<h5 class="h2Menu" th:text="${struttura.sottoSezione}" style="text-decoration: underline;"></h5>
+						</a>
+						
+			
 						<tbody style="text-align:center;">
 							<tr th:each="piatto: ${struttura.descrizioni}" style="text-align:center;">
 								<td>
@@ -45,11 +71,29 @@
 									<div th:if="${piatto.ingrediente != ''}">
 										<span class="ingredienti" th:text="${piatto.ingrediente}"></span>
 									</div>
-									<a th:if="${piatto.dimensione != ''}" th:text="${piatto.dimensione}" class="dimensione"></a>
+									
+									
+									<a th:if="${piatto.dimensione != '' && struttura.idStrutturaEntity != 40}" th:text="${piatto.dimensione}"
+										class="dimensione"></a>
+									
+									<a th:if="${piatto.dimensione != '' && struttura.idStrutturaEntity == 40}" >
+										<img th:src="@{../images/varie/medio.png}" th:alt="Medio" height="15%"
+											width="12%" style="margin-left: 3%;" th:text="${piatto.dimensione}">
+									</a>
+										
 									<a th:text="${piatto.menuEntity.prezzo}" class="prezzo"></a>
-									<span th:if="${piatto.dimensione != '' &amp;&amp; piatto.menuEntity.prezzo != ''}"> | </span>
-									<a th:if="${piatto.dimensioneDue != ''}" th:text="${piatto.dimensioneDue}" class="dimensione"></a>
+									<a th:if="${piatto.dimensioneDue != ''}"> | </a>
+									
+									<a th:if="${piatto.dimensioneDue != ''  && struttura.idStrutturaEntity != 40}" th:text="${piatto.dimensioneDue}"
+										class="dimensione"></a>
+									
+									<a th:if="${piatto.dimensioneDue != '' && struttura.idStrutturaEntity == 40}" >
+										<img th:src="@{../images/varie/grande.png}" th:alt="Grande" height="11%"
+											width="8%" style="margin-left: 3%;" th:text="${piatto.dimensioneDue}">
+									</a>
+										
 									<a th:text="${piatto.menuEntity.prezzoDue}" class="prezzo"></a>
+
 									<br />
 								</td>
 							</tr>
