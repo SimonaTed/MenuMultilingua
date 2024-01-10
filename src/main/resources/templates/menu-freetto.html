@@ -31,67 +31,123 @@
 			<div class="grid-item-lingua" th:each="struttura, i : ${strutture}">
 				<div>
 					<table>
-						
-					
-						
-						<a th:if="${struttura.sezione == '' && struttura.aggregante != 15}">
+
+						<a th:if="${struttura.sezione == '' && struttura.aggregante != 5 && struttura.aggregante != 14 && struttura.aggregante != 15 &&
+							struttura.aggregante != 16 && struttura.aggregante != 17 && struttura.aggregante != 18 &&
+							struttura.aggregante != 25}">
 							<h3 class="h2Menu" th:text="${struttura.sottoSezione}">
 						</a>
-						
+
 						<a th:if="${struttura.sezione == '' && struttura.aggregante == 15}">
 							<h3 class="h2Menu" th:text="${struttura.sottoSezione}" style="display: inline;"></h3>
 							<img th:src="@{../images/piatti/gluten-free.png}" th:alt="GlutenFree" height="15%"
 								width="11%" style="margin-left: 3%;">
 						</a>
-						
+
+
+						<a th:if="${struttura.sezione == '' && struttura.aggregante == 25}">
+							<h3 class="h2Menu" th:text="${struttura.sottoSezione}" style="display: inline;"></h3>
+							<img th:src="@{../images/varie/soy.png}" th:alt="AlsoSoy" height="25%" width="25%"
+								style="margin-left: 3%;">
+						</a>
+
+
+						<div th:if="${struttura.aggregante == 5 || struttura.aggregante == 14 || struttura.aggregante == 16 || struttura.aggregante == 17 || struttura.aggregante == 18}"
+							th:each="piatto : ${struttura.descrizioni}">
+							<a th:if="${piatto.menuEntity.url != ''}" th:href="@{'#modalPiatti'}"
+								th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}"
+								class="h2Menu">
+								<h3 class="h2Menu" th:text="${struttura.sottoSezione}"></h3>
+							</a>
+							<span th:if="${piatto.menuEntity.url == ''}" th:text="${struttura.sottoSezione}"
+								class="h2Menu"></span>
+						</div>
+
+
 						<a th:if="${struttura.aggregante == 19 && struttura.sezione != strutture[i.index - 1].sezione}">
 							<h3 class="h2Menu" th:text="${struttura.sezione}"></h3>
 							<h5 class="h2Menu" th:text="${struttura.sottoSezione}"></h5>
 						</a>
-						
-						<a th:if="${struttura.sezione != '' && struttura.sezione != strutture[i.index - 1].sezione && struttura.aggregante != 19}">
+
+						<a
+							th:if="${struttura.sezione != '' && struttura.sezione != strutture[i.index - 1].sezione && struttura.aggregante != 19}">
 							<h3 class="h2Menu" th:text="${struttura.sezione}"></h3>
-							<h5 class="h2Menu" th:text="${struttura.sottoSezione}" style="text-decoration: underline;"></h5>
+							<h5 class="h2Menu" th:text="${struttura.sottoSezione}" style="text-decoration: underline;">
+							</h5>
 						</a>
-						
+
 						<a th:if="${struttura.sezione != '' && struttura.sezione == strutture[i.index - 1].sezione}">
-							<h5 class="h2Menu" th:text="${struttura.sottoSezione}" style="text-decoration: underline;"></h5>
+							<h5 class="h2Menu" th:text="${struttura.sottoSezione}" style="text-decoration: underline;">
+							</h5>
 						</a>
-						
-			
+
+
 						<tbody style="text-align:center;">
 							<tr th:each="piatto: ${struttura.descrizioni}" style="text-align:center;">
 								<td>
-									<a th:if="${piatto.menuEntity.url != ''}" th:href="@{'#modalPiatti'}"
-										th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}"
-										th:text="${piatto.nome}" class="nomePiatto"></a>
-									<span th:if="${piatto.menuEntity.url == ''}" th:text="${piatto.nome}"
-										class="nomePiatto"></span>
-									<br />
+									<div th:if="${piatto.nome != ''}">
+										<a th:if="${piatto.menuEntity.url != ''}" th:href="@{'#modalPiatti'}"
+											th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}"
+											th:text="${piatto.nome}" class="nomePiatto"></a>
+										<span th:if="${piatto.menuEntity.url == ''}" th:text="${piatto.nome}"
+											class="nomePiatto"></span>
+									</div>
 									<div th:if="${piatto.ingrediente != ''}">
 										<span class="ingredienti" th:text="${piatto.ingrediente}"></span>
 									</div>
-									
-									
-									<a th:if="${piatto.dimensione != '' && struttura.idStrutturaEntity != 40}" th:text="${piatto.dimensione}"
-										class="dimensione"></a>
-									
-									<a th:if="${piatto.dimensione != '' && struttura.idStrutturaEntity == 40}" >
-										<img th:src="@{../images/varie/medio.png}" th:alt="Medio" height="15%"
-											width="12%" style="margin-left: 3%;" th:text="${piatto.dimensione}">
+
+
+									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu != 51 && piatto.menuEntity.idMenu != 57
+												&& piatto.menuEntity.idMenu != 58 && piatto.menuEntity.idMenu != 59}"
+										th:text="${piatto.dimensione}" class="dimensione"></a>
+
+									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu == 51}">
+										<img th:src="@{../images/varie/selectionMedium.png}" th:alt="Medium" height="11%"
+											width="8%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensione}">
 									</a>
-										
+									
+									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu == 57}">
+										<img th:src="@{../images/varie/juice.png}" th:alt="Medium" height="11%"
+											width="8%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensione}">
+									</a>
+									
+									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu == 58}">
+										<img th:src="@{../images/varie/yogurt.png}" th:alt="Medium" height="11%"
+											width="8%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensione}">
+									</a>
+									
+									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu == 59}">
+										<img th:src="@{../images/varie/fruitSalad.png}" th:alt="Medium" height="11%"
+											width="8%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensione}">
+									</a>
+
 									<a th:text="${piatto.menuEntity.prezzo}" class="prezzo"></a>
-									<a th:if="${piatto.dimensioneDue != ''}"> | </a>
-									
-									<a th:if="${piatto.dimensioneDue != ''  && struttura.idStrutturaEntity != 40}" th:text="${piatto.dimensioneDue}"
-										class="dimensione"></a>
-									
-									<a th:if="${piatto.dimensioneDue != '' && struttura.idStrutturaEntity == 40}" >
-										<img th:src="@{../images/varie/grande.png}" th:alt="Grande" height="11%"
-											width="8%" style="margin-left: 3%;" th:text="${piatto.dimensioneDue}">
+									<a th:if="${piatto.dimensione != '' && piatto.dimensioneDue != ''}"> | </a>
+
+									<a th:if="${piatto.dimensioneDue != ''  && piatto.menuEntity.idMenu != 51 && piatto.menuEntity.idMenu != 57
+												&& piatto.menuEntity.idMenu != 58 && piatto.menuEntity.idMenu != 59}"
+										th:text="${piatto.dimensioneDue}" class="dimensione"></a>
+
+									<a th:if="${piatto.dimensioneDue != '' && piatto.menuEntity.idMenu == 51}">
+										<img th:src="@{../images/varie/selectionLarge.png}" th:alt="Large" height="18%"
+											width="15%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensioneDue}">
 									</a>
-										
+									
+									<a th:if="${piatto.dimensioneDue != '' && piatto.menuEntity.idMenu == 57}">
+										<img th:src="@{../images/varie/juice.png}" th:alt="Large"  height="15%"
+											width="12%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensioneDue}">
+									</a>
+									
+									<a th:if="${piatto.dimensioneDue != '' && piatto.menuEntity.idMenu == 58}">
+										<img th:src="@{../images/varie/yogurt.png}" th:alt="Large"  height="15%"
+											width="12%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensioneDue}">
+									</a>
+									
+									<a th:if="${piatto.dimensioneDue != '' && piatto.menuEntity.idMenu == 59}">
+										<img th:src="@{../images/varie/fruitSalad.png}" th:alt="Large"  height="15%"
+											width="12%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensioneDue}">
+									</a>
+
 									<a th:text="${piatto.menuEntity.prezzoDue}" class="prezzo"></a>
 
 									<br />
