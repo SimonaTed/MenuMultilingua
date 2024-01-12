@@ -7,25 +7,20 @@
 	<title>Menù</title>
 	<link rel="stylesheet" th:href="@{../style.css}" />
 	<link rel="stylesheet" th:href="@{../bootstrap/css/bootstrap.min.css}">
-
-
-
 </head>
 
 <body style="text-align:center;" class="bodyLingua">
-
 	<header>
 		<div th:object="${lingua}" style="margin-top: 50px;">
 			<div class="header-content">
 				<h1 class="titoloLingua" th:text="*{benvenuto}"></h1>
-				<img class="logo" th:src="@{../images/logo-fretto.png}" th:alt="FREEtto" height="10%" width="15%"
+				<img class="logo" th:src="@{../images/varie/logo-fretto.png}" th:alt="FREEtto" height="10%" width="15%"
 					style="margin-left: 10px;">
 			</div>
 			<hr class="lineaLingua" />
 			<p class="sottotitolo"><span th:text="*{sottotitolo}"></span></p>
 		</div>
 	</header>
-
 	<div class="container">
 		<div class="grid-container-lingua">
 			<div class="grid-item-lingua" th:each="struttura, i : ${strutture}">
@@ -81,7 +76,6 @@
 							</h5>
 						</a>
 
-
 						<tbody style="text-align:center;">
 							<tr th:each="piatto: ${struttura.descrizioni}" style="text-align:center;">
 								<td>
@@ -96,56 +90,63 @@
 										<span class="ingredienti" th:text="${piatto.ingrediente}"></span>
 									</div>
 
-
 									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu != 51 && piatto.menuEntity.idMenu != 57
-												&& piatto.menuEntity.idMenu != 58 && piatto.menuEntity.idMenu != 59}"
-										th:text="${piatto.dimensione}" class="dimensione"></a>
+												&& piatto.menuEntity.idMenu != 58 && piatto.menuEntity.idMenu != 59}" th:text="${piatto.dimensione}"
+										class="dimensione"></a>
 
 									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu == 51}">
-										<img th:src="@{../images/varie/selectionMedium.png}" th:alt="Medium" height="11%"
-											width="8%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensione}">
+										<img th:src="@{../images/varie/selectionMedium.png}" th:alt="Medium"
+											height="11%" width="8%" style="margin-left: 3%; margin-right: 3%;"
+											th:text="${piatto.dimensione}">
 									</a>
-									
+
 									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu == 57}">
 										<img th:src="@{../images/varie/juice.png}" th:alt="Medium" height="11%"
-											width="8%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensione}">
+											width="8%" style="margin-left: 3%; margin-right: 3%;"
+											th:text="${piatto.dimensione}">
 									</a>
-									
+
 									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu == 58}">
 										<img th:src="@{../images/varie/yogurt.png}" th:alt="Medium" height="11%"
-											width="8%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensione}">
+											width="8%" style="margin-left: 3%; margin-right: 3%;"
+											th:text="${piatto.dimensione}">
 									</a>
-									
+
 									<a th:if="${piatto.dimensione != '' && piatto.menuEntity.idMenu == 59}">
 										<img th:src="@{../images/varie/fruitSalad.png}" th:alt="Medium" height="11%"
-											width="8%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensione}">
+											width="8%" style="margin-left: 3%; margin-right: 3%;"
+											th:text="${piatto.dimensione}">
 									</a>
 
 									<a th:text="${piatto.menuEntity.prezzo}" class="prezzo"></a>
 									<a th:if="${piatto.dimensione != '' && piatto.dimensioneDue != ''}"> | </a>
 
 									<a th:if="${piatto.dimensioneDue != ''  && piatto.menuEntity.idMenu != 51 && piatto.menuEntity.idMenu != 57
-												&& piatto.menuEntity.idMenu != 58 && piatto.menuEntity.idMenu != 59}"
-										th:text="${piatto.dimensioneDue}" class="dimensione"></a>
+												&& piatto.menuEntity.idMenu != 58 && piatto.menuEntity.idMenu != 59}" th:text="${piatto.dimensioneDue}"
+										class="dimensione"></a>
 
 									<a th:if="${piatto.dimensioneDue != '' && piatto.menuEntity.idMenu == 51}">
 										<img th:src="@{../images/varie/selectionLarge.png}" th:alt="Large" height="18%"
-											width="15%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensioneDue}">
+											width="15%" style="margin-left: 3%; margin-right: 3%;"
+											th:text="${piatto.dimensioneDue}">
 									</a>
-									
+
 									<a th:if="${piatto.dimensioneDue != '' && piatto.menuEntity.idMenu == 57}">
-										<img th:src="@{../images/varie/juice.png}" th:alt="Large"  height="15%"
-											width="12%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensioneDue}">
+										<img th:src="@{../images/varie/juice.png}" th:alt="Large" height="15%"
+											width="12%" style="margin-left: 3%; margin-right: 3%;"
+											th:text="${piatto.dimensioneDue}">
 									</a>
-									
+
 									<a th:if="${piatto.dimensioneDue != '' && piatto.menuEntity.idMenu == 58}">
-										<img th:src="@{../images/varie/yogurt.png}" th:alt="Large"  height="15%"
-											width="12%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensioneDue}">
+										<img th:src="@{../images/varie/yogurt.png}" th:alt="Large" height="15%"
+											width="12%" style="margin-left: 3%; margin-right: 3%;"
+											th:text="${piatto.dimensioneDue}">
 									</a>
-									
+
 									<a th:if="${piatto.dimensioneDue != '' && piatto.menuEntity.idMenu == 59}">
-										<img th:src="@{../images/varie/fruitSalad.png}" th:alt="Large"  height="15%"
-											width="12%" style="margin-left: 3%; margin-right: 3%;" th:text="${piatto.dimensioneDue}">
+										<img th:src="@{../images/varie/fruitSalad.png}" th:alt="Large" height="15%"
+											width="12%" style="margin-left: 3%; margin-right: 3%;"
+											th:text="${piatto.dimensioneDue}">
 									</a>
 
 									<a th:text="${piatto.menuEntity.prezzoDue}" class="prezzo"></a>
@@ -163,22 +164,20 @@
 	<div>
 		<div class="modal fade" id="modalPiatti" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
 			aria-hidden="true">
-			<div class="modal-dialog modal-lg modal-dialog-centered" role="document"
-				th:each="descrizione : ${descrizioni}">
+			<div class="modal-dialog modal-lg modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-body">
 						<img id="modalImage" style="width: 100%;" />
 					</div>
-
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
-
 
 		$(document).ready(function () {
 			$(document).on('click', '[data-toggle="modal"]', function (e) {
@@ -191,10 +190,9 @@
 			});
 		});
 
+
+
 	</script>
-
-
-
 
 	<footer>
 		<div th:object="${lingua}">

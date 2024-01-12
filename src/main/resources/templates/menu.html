@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -14,7 +14,6 @@
 			<br>
 			<br>
 			<div class="grid-container">
-
 				<div class="grid-item" th:each="lingua : ${lingue}">
 					<a th:href="@{'/menu-freetto/' + ${lingua.sigla}}">
 						<img class="imgMenu" th:src="@{${lingua.urlBandiera}}" th:alt="${lingua.sigla}" width="50px"
