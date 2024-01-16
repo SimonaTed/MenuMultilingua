@@ -32,7 +32,7 @@ public class MenuController {
 		return mav;
 	}
 	
-	
+	//json postman da togliere
 	@GetMapping("/menu-freetto-controllerStandard/{sigla}")
 	public List<DescrizioneEntity> getPiattiLinguaStandard(@PathVariable String sigla) {
 		return menuService.findDescrizioneByLingua(sigla);
