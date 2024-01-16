@@ -12,12 +12,6 @@ INSERT INTO lINGUA_ENTITY(ALLERGENI,AVVERTENZE,BENVENUTO,SIGLA,SOTTOTITOLO,URL_B
 INSERT INTO lINGUA_ENTITY(ALLERGENI,AVVERTENZE,BENVENUTO,SIGLA,SOTTOTITOLO,URL_BANDIERA ) VALUES('**ДЛЯ ИНФОРМАЦИИ О ВЕЩЕСТВАХ И АЛЛЕРГЕНАХ ВЫ МОЖЕТЕ СОДЕРЖАТЬ СПЕЦИАЛЬНУЮ ДОКУМЕНТАЦИЮ, ПРЕДОСТАВЛЯЕМУЮ ПО ЗАПРОСУ ПЕРСОНАЛА**','**ВСЕ НАШИ ПРОДУКТЫ ПРОДОЛЖАЮТСЯ ШОКОВОГО ОХЛАЖДЕНИЯ И ХРАНЯТСЯ ПРИ -28° ** СТОИМОСТЬ 1 ЕВРО**','ДОБРО ПОЖАЛОВАТЬ В','rush','- ARTISAN ФРИТЮРНИЦЫ - САЛАТЫ - ЦЕНТРОБЕГИ - КОФЕ МАГАЗИН -','../images/flags/russian.png');
 INSERT INTO lINGUA_ENTITY(ALLERGENI,AVVERTENZE,BENVENUTO,SIGLA,SOTTOTITOLO,URL_BANDIERA ) VALUES('**للحصول على معلومات حول المواد والمواد المسببة للحساسية، يمكنك الرجوع إلى الوثائق الخاصة المقدمة بناءً على طلب الموظفين','** جميع منتجاتنا يتم تبريدها وتخزينها في درجة حرارة -28 درجة ** تكلفة التغطية 1 يورو **',' مرحبا بك في','arab','- مقالي حرفية - السلطات - أجهزة الطرد المركزي - مقهى -","مرحبًا بك في','../images/flags/arabo.png');
 
-/*vedere per dovere mettere in caffetteria */
-
-/*
- * 
- */
-
 
 INSERT INTO MENU_ENTITY(PREZZO,PREZZO_DUE,FILTRO,URL) VALUES('€2,80','','','../images/piatti/SuppliArtigianale.jpg');
 INSERT INTO MENU_ENTITY(PREZZO,PREZZO_DUE,FILTRO,URL) VALUES('€4,00','','','../images/piatti/FilettoDiBaccala.jpg');
