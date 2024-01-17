@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +14,6 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class LinguaEntity {
-	
 	
 
 	@Id
@@ -27,6 +25,8 @@ public class LinguaEntity {
 	private String benvenuto;
 	private String avvertenze;
 	private String allergeni;
+	private String linguaAllergeni;
+
 	
 	@OneToMany(mappedBy = "linguaEntity")
 	@JsonBackReference
@@ -37,7 +37,7 @@ public class LinguaEntity {
 	private List<DescrizioneEntity> descrizioni = new ArrayList<>();
 
 	public LinguaEntity(int idLingua, String sigla, String urlBandiera, String sottotitolo, String benvenuto,
-			String avvertenze, String allergeni, List<AllergeniEntity> listaAllergeni,
+			String avvertenze, String allergeni, String linguaAllergeni, List<AllergeniEntity> listaAllergeni,
 			List<DescrizioneEntity> descrizioni) {
 		super();
 		this.idLingua = idLingua;
@@ -47,6 +47,7 @@ public class LinguaEntity {
 		this.benvenuto = benvenuto;
 		this.avvertenze = avvertenze;
 		this.allergeni = allergeni;
+		this.linguaAllergeni = linguaAllergeni;
 		this.listaAllergeni = listaAllergeni;
 		this.descrizioni = descrizioni;
 	}
@@ -127,8 +128,14 @@ public class LinguaEntity {
 		this.listaAllergeni = listaAllergeni;
 	}
 
-	
-	
+
+	public String getLinguaAllergeni() {
+		return linguaAllergeni;
+	}
+
+	public void setLinguaAllergeni(String linguaAllergeni) {
+		this.linguaAllergeni = linguaAllergeni;
+	}
 	
 
 }
