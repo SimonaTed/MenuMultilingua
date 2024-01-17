@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +13,8 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class LinguaEntity {
 	
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idLingua;
@@ -24,15 +24,18 @@ public class LinguaEntity {
 	private String benvenuto;
 	private String avvertenze;
 	private String allergeni;
-	@Column(columnDefinition = "VARCHAR(700)")
-	private List<String> listaAllergeni;
+	
+	@OneToMany(mappedBy = "linguaEntity")
+	@JsonBackReference
+	private List<AllergeniEntity> listaAllergeni= new ArrayList<>();
 	
 	@OneToMany(mappedBy = "linguaEntity")
 	@JsonBackReference
 	private List<DescrizioneEntity> descrizioni = new ArrayList<>();
 
 	public LinguaEntity(int idLingua, String sigla, String urlBandiera, String sottotitolo, String benvenuto,
-			String avvertenze, String allergeni, List<String> listaAllergeni, List<DescrizioneEntity> descrizioni) {
+			String avvertenze, String allergeni, List<AllergeniEntity> listaAllergeni,
+			List<DescrizioneEntity> descrizioni) {
 		super();
 		this.idLingua = idLingua;
 		this.sigla = sigla;
@@ -113,13 +116,15 @@ public class LinguaEntity {
 		this.descrizioni = descrizioni;
 	}
 
-	public List<String> getListaAllergeni() {
+	public List<AllergeniEntity> getListaAllergeni() {
 		return listaAllergeni;
 	}
 
-	public void setListaAllergeni(List<String> listaAllergeni) {
+	public void setListaAllergeni(List<AllergeniEntity> listaAllergeni) {
 		this.listaAllergeni = listaAllergeni;
 	}
+
+	
 	
 	
 

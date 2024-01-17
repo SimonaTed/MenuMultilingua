@@ -25,6 +25,7 @@ public class MenuEntity {
 	@Column(nullable = true)
 	private String prezzoDue;
 	private String url;
+	@Column(nullable = true)
 	private String filtro;
 	
 	@OneToMany(mappedBy = "menuEntity")
