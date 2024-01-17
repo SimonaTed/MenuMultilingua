@@ -20,12 +20,20 @@
 			<hr class="lineaLingua" />
 			<p class="sottotitolo"><span th:text="*{sottotitolo}"></span></p>
 		</div>
+		<!--<div th:each="el : ${allergeni}">
+			<p><span th:text="${el.numeroAllergeni}"></span>
+				<span th:text="${el.descrizione}"></span>
+			</p>
+		</div>-->
+
 	</header>
 	<div class="container">
 		<div class="grid-container-lingua">
 			<div class="grid-item-lingua" th:each="struttura, i : ${strutture}">
 				<div>
 					<table>
+
+
 
 						<a th:if="${struttura.sezione == '' && struttura.aggregante != 5 && struttura.aggregante != 14 && struttura.aggregante != 15 &&
 							struttura.aggregante != 16 && struttura.aggregante != 17 && struttura.aggregante != 18 &&
@@ -70,7 +78,7 @@
 							<h5 class="h2Menu" th:text="${struttura.sottoSezione}" style="text-decoration: underline;">
 							</h5>
 						</a>
-						
+
 
 						<a th:if="${struttura.sezione != '' && struttura.sezione == strutture[i.index - 1].sezione}">
 							<h5 class="h2Menu" th:text="${struttura.sottoSezione}" style="text-decoration: underline;">
@@ -80,6 +88,7 @@
 						<tbody style="text-align:center;">
 							<tr th:each="piatto: ${struttura.descrizioni}" style="text-align:center;">
 								<td>
+
 									<div th:if="${piatto.nome != ''}">
 										<a th:if="${piatto.menuEntity.url != ''}" th:href="@{'#modalPiatti'}"
 											th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}"
@@ -173,7 +182,49 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
+	<div>
+		<div class="modal fade" id="modalAllergeni" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-body">
+
+						<h3 style="font-family: Raleway !important;font-size: 3em;color: #119549;line-height: 1;text-align: center"
+							class="vc_custom_heading">ALLERGENI</h3>
+						
+
+
+					<div class="container" th:each="el : ${allergeni}">
+						<div class="row">
+							<div class="col-sm-2" style="display: inline">
+								<a><img th:src="@{../images/allergeni/milk.png}" th:alt="Almond" height="11%" width="8%" ></a>
+							</div>
+							<div class="col-sm-2" style="display: inline">
+								<p th:text="${el.numeroAllergeni}"></p>
+							</div>
+							<div class="col-sm-8" style="display: inline">
+								
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<div th:object="${lingua}">
+						<a th:text="*{allergeni}"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+	<div>
+		<a th:href="@{'#modalAllergeni'}" th:attr="data-toggle='modal', data-target='#modalAllergeni'"
+			th:text="ALLERGENI"></a>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -196,9 +247,11 @@
 	</script>
 
 	<footer>
+
+
 		<div th:object="${lingua}">
 			<p><span th:text="*{avvertenze}"></p>
-			<p><span th:text="*{allergeni}"></p>
+			<!--<p><span th:text="*{allergeni}"></p>-->
 		</div>
 	</footer>
 

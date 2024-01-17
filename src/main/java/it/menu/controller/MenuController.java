@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import it.menu.entity.AllergeniEntity;
 import it.menu.entity.DescrizioneEntity;
 import it.menu.entity.LinguaEntity;
 import it.menu.entity.StrutturaEntity;
@@ -48,6 +49,8 @@ public class MenuController {
 		mav.addObject("lingua", linguaTrovata);
 		List<StrutturaEntity> strutture = menuService.findStrutturaEntityByLingua(sigla);
 		mav.addObject("strutture",strutture);
+		List<AllergeniEntity> allergeni = menuService.findAllergeniByLingua(sigla);
+		mav.addObject("allergeni", allergeni);
 		return mav;
 	}
 	
