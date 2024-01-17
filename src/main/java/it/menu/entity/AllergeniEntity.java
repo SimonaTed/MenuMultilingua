@@ -14,13 +14,13 @@ public class AllergeniEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAllergeni;
-	private int numeroAllergeni;
+	private String numeroAllergeni;
 	private String descrizione;
 	
 	@ManyToOne
 	private LinguaEntity linguaEntity;
 	
-	public AllergeniEntity(int idAllergeni, int numeroAllergeni, String descrizione, LinguaEntity linguaEntity) {
+	public AllergeniEntity(int idAllergeni, String numeroAllergeni, String descrizione, LinguaEntity linguaEntity) {
 		super();
 		this.idAllergeni = idAllergeni;
 		this.numeroAllergeni = numeroAllergeni;
@@ -40,11 +40,11 @@ public class AllergeniEntity {
 		this.idAllergeni = idAllergeni;
 	}
 
-	public int getNumeroAllergeni() {
+	public String getNumeroAllergeni() {
 		return numeroAllergeni;
 	}
 
-	public void setNumeroAllergeni(int numeroAllergeni) {
+	public void setNumeroAllergeni(String numeroAllergeni) {
 		this.numeroAllergeni = numeroAllergeni;
 	}
 
