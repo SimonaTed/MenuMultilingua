@@ -18,6 +18,7 @@ public class MenuEntity {
 	
 	
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMenu;
@@ -27,6 +28,9 @@ public class MenuEntity {
 	private String url;
 	@Column(nullable = true)
 	private String filtro;
+	private String elencoAllergeni;
+	
+	
 	
 	@OneToMany(mappedBy = "menuEntity")
 	@JsonBackReference
@@ -86,7 +90,15 @@ public class MenuEntity {
 		
 	}
 	
-	public MenuEntity(int idMenu, String prezzo, String prezzoDue, String url, String filtro,
+	public String getElencoAllergeni() {
+		return elencoAllergeni;
+	}
+
+	public void setElencoAllergeni(String elencoAllergeni) {
+		this.elencoAllergeni = elencoAllergeni;
+	}
+	
+	public MenuEntity(int idMenu, String prezzo, String prezzoDue, String url, String filtro, String elencoAllergeni,
 			List<DescrizioneEntity> descrizioni) {
 		super();
 		this.idMenu = idMenu;
@@ -94,7 +106,10 @@ public class MenuEntity {
 		this.prezzoDue = prezzoDue;
 		this.url = url;
 		this.filtro = filtro;
+		this.elencoAllergeni = elencoAllergeni;
 		this.descrizioni = descrizioni;
 	}
 
+	
+	
 }
