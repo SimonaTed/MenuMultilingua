@@ -1,9 +1,11 @@
 package it.menu.entity;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,9 +14,6 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class LinguaEntity {
-	
-	
-
 	
 
 	@Id
@@ -27,6 +26,7 @@ public class LinguaEntity {
 	private String avvertenze;
 	private String allergeni;
 	private String linguaAllergeni;
+
 	
 	@OneToMany(mappedBy = "linguaEntity")
 	@JsonBackReference
@@ -128,6 +128,7 @@ public class LinguaEntity {
 		this.listaAllergeni = listaAllergeni;
 	}
 
+
 	public String getLinguaAllergeni() {
 		return linguaAllergeni;
 	}
@@ -135,9 +136,6 @@ public class LinguaEntity {
 	public void setLinguaAllergeni(String linguaAllergeni) {
 		this.linguaAllergeni = linguaAllergeni;
 	}
-
-	
-	
 	
 
 }

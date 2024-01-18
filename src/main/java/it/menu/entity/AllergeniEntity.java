@@ -63,5 +63,4 @@ public class AllergeniEntity {
 	public void setLinguaEntity(LinguaEntity linguaEntity) {
 		this.linguaEntity = linguaEntity;
 	}
-
 }
