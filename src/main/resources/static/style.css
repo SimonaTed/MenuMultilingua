@@ -4,12 +4,12 @@
 	overflow: auto;
 }
 
-.bodyLingua{
-	background-color: beige; 
-	background-attachment: fixed; 
-    background-size: cover; 
+.bodyLingua {
+	background-color: beige;
+	background-attachment: fixed;
+	background-size: cover;
 }
-	
+
 
 .headerMenu {
 	text-align: center;
@@ -51,16 +51,16 @@
 }
 
 .grid-item-lingua {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
 }
 
 table {
-    table-layout: fixed;
-    width: 100%;
+	table-layout: fixed;
+	width: 100%;
 }
 
 .titoloMenu {
@@ -109,12 +109,12 @@ table {
 }
 
 .header-content {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 	justify-content: center;
 }
 
-footer{
+footer {
 	color: green;
 	font-weight: bold;
 	margin-top: 20px;
@@ -122,43 +122,73 @@ footer{
 }
 
 .containerMenu {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 
 .linea {
-  border: none;
-    border-left: 2px solid green; 
-    height: 100px;
+	border: none;
+	border-left: 2px solid green;
+	height: 100px;
 }
 
-.h2Menu{
+.h2Menu {
 	font-family: "Lucida Handwriting", cursive;
 	text-align: center;
 }
 
-.nomePiatto{
+.nomePiatto {
 	font-family: Consolas;
 	font-weight: bold;
 	font-size: 20px;
 }
 
-.ingredienti{
+.ingredienti {
 	font-family: Georgia;
 	font-size: 13px;
 }
 
-.dimensione{
+.dimensione {
 	font-style: oblique;
 	margin-left: 3%;
 }
 
-.prezzo{
+.prezzo {
 	margin-right: 3%;
 }
 
+.row-separator {
+	border-bottom: 1px solid #ccc;
+	/* Specifica il colore e lo stile della linea di separazione */
+	margin-bottom: 10px;
+	/* Aggiungi uno spazio tra le righe se necessario */
+	margin-top: 10px;
+	padding-bottom: 10px;
+	/* Aggiungi spazio sotto la linea di separazione se necessario */
+}
+
+.imgAllergeni {
+	width: 100px;
+	height: 100px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.custom-modal-header {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	/* Regola la profondità dello z-index secondo le tue esigenze */
+	background-color: rgb(0, 119, 60);
+	/* Colore di sfondo dell'header durante il floating */
+	  display: flex;
+        justify-content: center; /* Centra orizzontalmente */
+        align-items: center; /* Centra verticalmente */
+}
 
 
 
@@ -178,8 +208,8 @@ footer{
 		margin-bottom: 30px;
 		margin-top: 30px;
 	}
-	
-	.grid-container-lingua{
+
+	.grid-container-lingua {
 		grid-template-columns: 100%;
 	}
 }
@@ -200,12 +230,21 @@ footer{
 		margin-bottom: 10px;
 		margin-top: 10px;
 	}
-	
-	.grid-container-lingua{
+
+	.grid-container-lingua {
 		grid-template-columns: 100%;
 	}
-	
-	
-	
-	
+
+	.imgAllergeni {
+		width: 40px;
+		height: 40px;
+		margin-bottom: 2px;
+		margin-top: 2px;
+		margin-right: 2px;
+		margin-left: 2px;
+	}
+
+
+
+
 }
