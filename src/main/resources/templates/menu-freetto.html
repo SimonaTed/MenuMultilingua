@@ -55,6 +55,7 @@
 							</a>
 							<span th:if="${piatto.menuEntity.url == ''}" th:text="${struttura.sottoSezione}"
 								class="h2Menu"></span>
+
 						</div>
 
 
@@ -82,11 +83,14 @@
 
 									<div th:if="${piatto.nome != ''}">
 										<a th:if="${piatto.menuEntity.url != ''}" th:href="@{'#modalPiatti'}"
-											th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}"
+											th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}, data-allergeni=${piatto.menuEntity.elencoAllergeni}"
 											th:text="${piatto.nome}" class="nomePiatto"></a>
 										<span th:if="${piatto.menuEntity.url == ''}" th:text="${piatto.nome}"
 											class="nomePiatto"></span>
-
+										<a th:if="${piatto.menuEntity.filtro != ''}">
+											<img th:src="@{../images/varie/veg1.png}" th:alt="Vegan" height="6%"
+												width="6%" style="margin-left: 3%;">
+										</a>
 									</div>
 									<div th:if="${piatto.ingrediente != ''}">
 										<span class="ingredienti" th:text="${piatto.ingrediente}"></span>
@@ -170,13 +174,49 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<img id="modalImage" style="width: 100%;" />
-						<a th:href="@{'#modalAllergeni'}" th:attr="data-toggle='modal', data-target='#modalAllergeni'"
-							th:text="${'*' + lingua.linguaAllergeni}"></a>
+						<a th:text="${'*' + lingua.linguaAllergeni + ': '}"></a>
+						<a th:href="@{'#modalAllergeni'}"
+							th:attr="data-toggle='modal', data-target='#modalAllergeni'"
+							 id="modalAllergeniContent"></a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!--            //////////////////////////////////////////////////////////           --><!-- 
+
+	<div>
+		<div class="modal fade" id="modalParteAllergeni" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header custom-modal-header">
+						<h3 style="color: whitesmoke;" th:text="${#strings.toUpperCase(lingua.linguaAllergeni)}"></h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span style="color: whitesmoke;" aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div th:each="el : ${allergeni}">
+							<div class="row mb-3">
+							</div>    
+							<div th:if="${el.numeroAllergeni ==  #strings.substring(descrizioni.menuEntity.elencoAllergeni, 0, 3)}">
+								<div class="col-2 d-flex align-items-center">
+									<h2 th:text="${el.numeroAllergeni}" style="color: green;"></h2>
+								</div>
+								<div class="col-7 d-flex align-items-center justify-content-center">
+									<p th:text="${el.descrizione}"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	           //////////////////////////////////////////////////////////           -->
 
 	<div>
 		<div class="modal fade" id="modalAllergeni" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
@@ -293,7 +333,9 @@
 				var targetModal = $(this).attr('data-target');
 				var modal = new bootstrap.Modal(document.querySelector(targetModal));
 				var imageSrc = $(this).data('image');
+				var elencoAllergeni = $(this).data('allergeni');
 				$('#modalImage').attr('src', imageSrc);
+				$('#modalAllergeniContent').text(elencoAllergeni);
 				modal.show();
 			});
 		});
@@ -304,13 +346,18 @@
 			});
 		});
 
+		$(document).ready(function () {
+			$('#modalParteAllergeni .close').on('click', function () {
+				$('#modalParteAllergeni').modal('hide');
+			});
+		});
 
 	</script>
 
 	<footer>
 		<div>
 			<a th:href="@{'#modalAllergeni'}" th:attr="data-toggle='modal', data-target='#modalAllergeni'"
-				th:text="${#strings.toUpperCase(lingua.linguaAllergeni)}"></a>
+				th:text="${'**' + #strings.toUpperCase(lingua.linguaAllergeni) + '**'}" style="color: green; text-decoration: underline;"></a>
 		</div>
 
 		<div th:object="${lingua}">
