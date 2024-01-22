@@ -20,21 +20,12 @@
 			<hr class="lineaLingua" />
 			<p class="sottotitolo"><span th:text="*{sottotitolo}"></span></p>
 		</div>
-		<!--<div th:each="el : ${allergeni}">
-			<p><span th:text="${el.numeroAllergeni}"></span>
-				<span th:text="${el.descrizione}"></span>
-			</p>
-		</div>-->
-
 	</header>
 	<div class="container">
 		<div class="grid-container-lingua">
 			<div class="grid-item-lingua" th:each="struttura, i : ${strutture}">
 				<div>
 					<table>
-
-
-
 						<a th:if="${struttura.sezione == '' && struttura.aggregante != 5 && struttura.aggregante != 14 && struttura.aggregante != 15 &&
 							struttura.aggregante != 16 && struttura.aggregante != 17 && struttura.aggregante != 18 &&
 							struttura.aggregante != 25}">
@@ -64,6 +55,7 @@
 							</a>
 							<span th:if="${piatto.menuEntity.url == ''}" th:text="${struttura.sottoSezione}"
 								class="h2Menu"></span>
+
 						</div>
 
 
@@ -91,10 +83,14 @@
 
 									<div th:if="${piatto.nome != ''}">
 										<a th:if="${piatto.menuEntity.url != ''}" th:href="@{'#modalPiatti'}"
-											th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}"
+											th:attr="data-toggle='modal', data-target='#modalPiatti', data-image=${piatto.menuEntity.url}, data-allergeni=${piatto.menuEntity.elencoAllergeni}"
 											th:text="${piatto.nome}" class="nomePiatto"></a>
 										<span th:if="${piatto.menuEntity.url == ''}" th:text="${piatto.nome}"
 											class="nomePiatto"></span>
+										<a th:if="${piatto.menuEntity.filtro != ''}">
+											<img th:src="@{../images/varie/veg1.png}" th:alt="Vegan" height="6%"
+												width="6%" style="margin-left: 3%;">
+										</a>
 									</div>
 									<div th:if="${piatto.ingrediente != ''}">
 										<span class="ingredienti" th:text="${piatto.ingrediente}"></span>
@@ -178,54 +174,154 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<img id="modalImage" style="width: 100%;" />
+						<a th:text="${'*' + lingua.linguaAllergeni + ': '}"></a>
+						<a th:href="@{'#modalAllergeni'}"
+							th:attr="data-toggle='modal', data-target='#modalAllergeni'"
+							 id="modalAllergeniContent"></a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!--            //////////////////////////////////////////////////////////           --><!-- 
+
+	<div>
+		<div class="modal fade" id="modalParteAllergeni" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header custom-modal-header">
+						<h3 style="color: whitesmoke;" th:text="${#strings.toUpperCase(lingua.linguaAllergeni)}"></h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span style="color: whitesmoke;" aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div th:each="el : ${allergeni}">
+							<div class="row mb-3">
+							</div>    
+							<div th:if="${el.numeroAllergeni ==  #strings.substring(descrizioni.menuEntity.elencoAllergeni, 0, 3)}">
+								<div class="col-2 d-flex align-items-center">
+									<h2 th:text="${el.numeroAllergeni}" style="color: green;"></h2>
+								</div>
+								<div class="col-7 d-flex align-items-center justify-content-center">
+									<p th:text="${el.descrizione}"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	           //////////////////////////////////////////////////////////           -->
 
 	<div>
 		<div class="modal fade" id="modalAllergeni" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
 			aria-hidden="true">
-			<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-content">
 				<div class="modal-content">
+					<div class="modal-header custom-modal-header">
+						<h3 style="color: whitesmoke;" th:text="${#strings.toUpperCase(lingua.linguaAllergeni)}"></h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span style="color: whitesmoke;" aria-hidden="true">&times;</span>
+						</button>
+					</div>
 					<div class="modal-body">
+						<div th:each="el : ${allergeni}">
+							<div class="row mb-3">
+								<div class="col-3 d-flex align-items-center">
+									<a th:if="${el.numeroAllergeni == '.01'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/gluten.png}"
+											th:alt="Gluten" style="margin-left: 10px;">
+									</a>
 
-						<h3 style="font-family: Raleway !important;font-size: 3em;color: #119549;line-height: 1;text-align: center"
-							class="vc_custom_heading">ALLERGENI</h3>
-						
+									<a th:if="${el.numeroAllergeni == '.02'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/crustaceans.png}"
+											th:alt="Crustaceans" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
 
+									<a th:if="${el.numeroAllergeni == '.03'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/egg.png}" th:alt="Egg"
+											height="80%" width="80%" style="margin-left: 10px;">
+									</a>
 
-					<div class="container" th:each="el : ${allergeni}">
-						<div class="row">
-							<div class="col-sm-2" style="display: inline">
-								<a><img th:src="@{../images/allergeni/milk.png}" th:alt="Almond" height="11%" width="8%" ></a>
-							</div>
-							<div class="col-sm-2" style="display: inline">
-								<p th:text="${el.numeroAllergeni}"></p>
-							</div>
-							<div class="col-sm-8" style="display: inline">
-								
+									<a th:if="${el.numeroAllergeni == '.04'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/fish.png}" th:alt="Fish"
+											height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.05'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/peanut.png}"
+											th:alt="Peanut" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.06'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/soybean.png}"
+											th:alt="Soybean" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.07'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/milk.png}" th:alt="Milk"
+											height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.08'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/almond1.png}"
+											th:alt="Almond" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.09'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/celery.png}"
+											th:alt="Celery" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.10'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/mustard.png}"
+											th:alt="Mustard" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.11'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/sesame.png}"
+											th:alt="Sesame" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.12'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/sulfide.png}"
+											th:alt="Sulfide" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.13'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/lupin.png}"
+											th:alt="Lupin" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+
+									<a th:if="${el.numeroAllergeni == '.14'}">
+										<img class="imgAllergeni" th:src="@{../images/allergeni/mollusc.png}"
+											th:alt="Mollusc" height="80%" width="80%" style="margin-left: 10px;">
+									</a>
+								</div>
+								<div class="col-2 d-flex align-items-center">
+									<h2 th:text="${el.numeroAllergeni}" style="color: green;"></h2>
+								</div>
+								<div class="col-7 d-flex align-items-center justify-content-center">
+									<p th:text="${el.descrizione}"></p>
+								</div>
 							</div>
 						</div>
 					</div>
-
-				</div>
-				<div class="modal-footer">
-					<div th:object="${lingua}">
-						<a th:text="*{allergeni}"></a>
+					<div class="modal-footer">
+						<div th:object="${lingua}">
+							<a th:text="*{allergeni}"></a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
 
-
-	<div>
-		<a th:href="@{'#modalAllergeni'}" th:attr="data-toggle='modal', data-target='#modalAllergeni'"
-			th:text="ALLERGENI"></a>
-	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -237,17 +333,32 @@
 				var targetModal = $(this).attr('data-target');
 				var modal = new bootstrap.Modal(document.querySelector(targetModal));
 				var imageSrc = $(this).data('image');
+				var elencoAllergeni = $(this).data('allergeni');
 				$('#modalImage').attr('src', imageSrc);
+				$('#modalAllergeniContent').text(elencoAllergeni);
 				modal.show();
 			});
 		});
 
+		$(document).ready(function () {
+			$('#modalAllergeni .close').on('click', function () {
+				$('#modalAllergeni').modal('hide');
+			});
+		});
 
+		$(document).ready(function () {
+			$('#modalParteAllergeni .close').on('click', function () {
+				$('#modalParteAllergeni').modal('hide');
+			});
+		});
 
 	</script>
 
 	<footer>
-
+		<div>
+			<a th:href="@{'#modalAllergeni'}" th:attr="data-toggle='modal', data-target='#modalAllergeni'"
+				th:text="${'**' + #strings.toUpperCase(lingua.linguaAllergeni) + '**'}" style="color: green; text-decoration: underline;"></a>
+		</div>
 
 		<div th:object="${lingua}">
 			<p><span th:text="*{avvertenze}"></p>
